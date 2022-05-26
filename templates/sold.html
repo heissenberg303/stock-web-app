@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    BUY
+{% endblock %}
+
+{% block main %}
+    <form action="/sold" method="post">
+        <div class="mb-3">
+            <p>You have sold {{ sell_symbol}} for {{ total_sell }} $</p>
+        </div>
+    </form>
+{% endblock %}

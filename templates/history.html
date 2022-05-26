@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    INDEX
+{% endblock %}
+
+{% block main %}
+    <form action="/index" method="post">
+        <div class="mb-3">
+            <p> History </p>
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Share</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Order</th>
+                    <th scope="col">Transaction date</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for d in hist_list %}
+                        <tr>
+                          <th scope="row">{{d.symbol}}</th>
+                          <td>{{d.shares}}</td>
+                          <td>{{d.price}}</td>
+                          <td>{{d.order_type}}</td>
+                          <td>{{d.date_time}}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </form>
+{% endblock %}

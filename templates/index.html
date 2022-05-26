@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    INDEX
+{% endblock %}
+
+{% block main %}
+    <form action="/index" method="post">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+          {{ message }}
+        </ul>
+      {% endif %}
+    {% endwith %}
+        <div class="mb-3">
+            <p> Portfolio </p>
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Total Share</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total Price</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for key, val in total_shares.items() %}
+                        <tr>
+                          <th scope="row">{{key}}</th>
+                          <td>{{val[0]}}</td>
+                          <td>{{val[1] | usd}}</td>
+                          <td>{{val[2] | usd}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
+                    <td class="border-0 text-end">{{cash | usd}}</td>
+                  </tr>
+                  <tr>
+                    <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>
+                    <td class="border-0 w-bold text-end">{{equity | usd}}</td>
+                  </tr>
+                </tfoot>
+            </table>
+        </div>
+    </form>
+{% endblock %}
